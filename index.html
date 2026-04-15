@@ -1,23 +1,551 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "인터넷 가입 및 설치 서비스",
+      "provider": {
+        "@type": "Organization",
+        "name": "믿음직한 인터넷 가입 비교 센터",
+        "url": "https://yourdomain.com",
+        "sameAs": [
+          "https://www.facebook.com/yourpage",
+          "https://www.instagram.com/yourpage"
+        ]
+      },
+      "areaServed": "대한민국",
+      "description": "2026년 최신 인터넷만 설치 가격 비교와 현금 사은품 최대 지원 업체 순위, SKT, KT, LGU+ 통신사별 장단점 분석",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "인터넷 가입 상품 목록",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "KT 올레 인터넷"
+            },
+            "description": "KT 통신사의 안정적인 인터넷 회선과 다양한 결합 할인 혜택"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "SK 브로드밴드 인터넷"
+            },
+            "description": "SKT 모바일 결합 시 높은 할인율과 풍부한 사은품"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "LG 유플러스 인터넷"
+            },
+            "description": "U+ TV 콘텐츠와 결합 시 시너지 효과, 파격적인 현금 지원금"
+          }
+        ]
+      }
+    }
+  </script>
+
+  <!-- CSS 스타일링 -->
+  <style>
+    body {
+      font-family: "Noto Sans KR", sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.8; /* 가독성을 위해 줄 간격 확대 */
+      background-color: #f7f9fc; /* 부드러운 배경색 */
+      color: #333;
+    }
+    header {
+      background-color: #007bff; /* 청량한 파란색 */
+      color: white;
+      padding: 3rem 1rem 2rem; /* 타이틀이 잘 보이게 여백 확장 */
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease, transform 0.2s ease;
+      position: relative;
+      font-size: 1.1rem;
+    }
+    nav a:hover, nav a:focus {
+      color: #ffc107; /* 따뜻한 노란색 */
+      transform: translateY(-2px);
+    }
+    main {
+      max-width: 1000px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+      background-color: white;
+      box-shadow: 0 0 30px rgba(0,0,0,0.08); /* 부드러운 그림자 */
+      border-radius: 16px;
+    }
+    h2 {
+      color: #007bff; /* 진한 파란색 */
+      border-bottom: 2px solid #e9ecef;
+      padding-bottom: 0.8rem;
+      margin-top: 3.5rem;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    h3 {
+      color: #34495e;
+      font-size: 1.5rem;
+      margin-top: 2rem;
+      border-left: 4px solid #007bff;
+      padding-left: 1rem;
+    }
+    p {
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+      background-color: #fcfcfc;
+      border-radius: 8px;
+      overflow: hidden; /* 모서리 둥글게 처리 */
+    }
+    th, td {
+      padding: 1.2rem;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #e9f0f9; /* 연한 파란색 배경 */
+      color: #007bff;
+      font-weight: 700;
+      text-align: center;
+    }
+    td {
+      color: #444;
+    }
+    table tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    dl dt {
+      font-weight: 700;
+      margin-top: 1.5rem;
+      cursor: pointer;
+      color: #007bff;
+      transition: color 0.3s ease;
+      font-size: 1.1rem;
+      padding: 10px 0;
+      border-bottom: 1px dotted #ccc;
+    }
+    dl dt:hover {
+      color: #0056b3;
+    }
+    dl dd {
+      margin-left: 0;
+      margin-bottom: 1.5rem;
+      display: none;
+      background-color: #f9fcfd;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid #e0e0e0;
+    }
+    dl dt.active + dd {
+      display: block;
+    }
+    .cta-button {
+      display: block;
+      width: fit-content;
+      margin: 3rem auto;
+      background-color: #28a745; /* 초록색 (성공, 가입) */
+      color: white;
+      font-weight: 700;
+      padding: 1.5rem 3rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(40,167,69,0.3);
+      font-size: 1.2rem;
+    }
+    .cta-button:hover {
+      background-color: #218838;
+      transform: translateY(-3px);
+    }
+    .keyword-tags {
+      margin: 2rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .keyword-tags a {
+      background-color: #e0f0ff; /* 부드러운 하늘색 */
+      color: #007bff;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      font-weight: 500;
+    }
+    .keyword-tags a:hover {
+      background-color: #cce0ff;
+      color: #0056b3;
+    }
+    .image-container {
+      margin: 2rem 0;
+      text-align: center;
+    }
+    .image-container img {
+      width: 100%;
+      max-width: 800px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+    .external-links {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #eee;
+    }
+    .external-links a {
+      color: #007bff;
+      text-decoration: none;
+      margin-right: 20px;
+      font-weight: 500;
+      display: inline-block;
+      margin-bottom: 10px;
+      transition: color 0.3s ease;
+    }
+    .external-links a:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      padding: 2.5rem;
+      font-size: 0.9rem;
+      color: #777;
+      background-color: #e9ecef;
+      margin-top: 3rem;
+    }
+    .form-section {
+      background-color: #f8f9fa;
+      padding: 2.5rem;
+      border-radius: 12px;
+      border: 1px solid #e0e0e0;
+      margin: 2.5rem 0;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #333;
+    }
+    .form-group input, .form-group select {
+      width: calc(100% - 24px);
+      padding: 12px;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    .form-group input[type="radio"], .form-group input[type="checkbox"] {
+      width: auto;
+      margin-right: 0.5rem;
+    }
+    .form-group .radio-group label {
+      display: inline-block;
+      margin-right: 1.5rem;
+    }
+    .form-submit {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+    }
+    .form-submit:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>인터넷만 설치 가격 비교와 현금 사은품 가이드</h1>
+    <nav aria-label="메인 메뉴">
+      <ul>
+        <li><a href="#intro">서비스 소개</a></li>
+        <li><a href="#compare">통신사 비교</a></li>
+        <li><a href="#cost-guide">가격 견적</a></li>
+        <li><a href="#faq">자주 묻는 질문</a></li>
+        <li><a href="#contact">견적 신청</a></li>
+      </ul>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+  </header>
+
+  <main>
+    <section id="intro">
+      <h2>2026년 최신 인터넷만 설치, 현명하게 가입하는 방법 💻</h2>
+      <div class="image-container">
+        <!-- Pexels에서 상업적 이용 가능한 이미지 (출처: pexels.com) -->
+        <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="노트북으로 인터넷을 사용하는 사람의 모습">
+      </div>
+      <p>새로운 집으로 이사하거나, 기존 약정 만료로 통신사를 변경하려는 분들에게 **"인터넷만 설치"**는 가장 중요한 고민거리 중 하나입니다. 최근에는 TV나 전화 없이 오직 인터넷 서비스만을 원하는 고객이 증가하면서, 통신 3사(SKT, KT, LGU+) 모두 다양한 **인터넷 단독 상품**을 경쟁적으로 출시하고 있습니다. 하지만 복잡한 요금제와 수많은 할인 혜택, 그리고 **현금 사은품** 경쟁으로 인해 어떤 통신사를 선택해야 할지 쉽게 결정하기 어렵습니다. 저희는 2026년 최신 정보를 바탕으로 고객님 상황에 가장 적합한 **인터넷만 설치 전문 업체**를 추천해 드리고, 통신사별 **장단점**과 **현금지원** 혜택을 비교하여 투명하고 **저렴한** 가입을 도와드립니다.</p>
+
+      <h3>인터넷 가입 시 고려해야 할 핵심 요소</h3>
+      <p>인터넷을 가입할 때는 단순히 가격이 **싼곳**을 찾는 것보다, 여러 요소를 종합적으로 고려해야 합니다. 다음은 현명한 선택을 위한 핵심 체크리스트입니다.</p>
+      <ul>
+        <li>**인터넷 속도 (100Mbps, 500Mbps, 1Gbps, 10Gbps):** 사용 목적에 따라 적절한 속도를 선택해야 합니다. 일반적인 웹서핑이나 넷플릭스 시청은 100Mbps로도 충분하지만, 4K 스트리밍, 대용량 파일 다운로드, 온라인 게임을 즐기는 분들은 500Mbps 이상을 추천합니다.</li>
+        <li>**약정 기간 및 위약금:** 대부분의 인터넷 상품은 3년 약정을 기준으로 **가입 혜택**을 제공합니다. 약정 기간 내 해지 시 위약금이 발생하므로, 거주 기간을 고려하여 신중하게 결정해야 합니다.</li>
+        <li>**결합 할인 혜택:** 본인 또는 가족이 사용하는 휴대폰 통신사와 인터넷을 **결합**하면 매월 통신비를 절약할 수 있습니다. SKT, KT, LGU+ 모두 다양한 모바일 결합 상품을 운영하고 있습니다.</li>
+        <li>**현금 사은품 및 지원금:** 통신사 대리점마다 제공하는 **현금 사은품** 수준이 다릅니다. 통신사의 정책과 관계없이 대리점 자체적으로 제공하는 **현금지원**을 꼼꼼히 비교하여 최대 **혜택**을 받을 수 있는 곳을 선택해야 합니다.</li>
+      </ul>
+      <p>저희는 **내돈내산**으로 실제 **후기**가 좋은 **전문 업체**만을 엄선하여 고객님께 추천해 드립니다. 또한, **네이버**, **구글** 검색 결과나 **유튜브**, **인스타그램** 등 SNS 채널에서 홍보되는 내용들을 종합적으로 분석하여 최신 트렌드를 반영합니다.</p>
+
+      <div class="keyword-tags" aria-label="연관 키워드">
+        <a href="#cost-guide">인터넷만설치가격</a>
+        <a href="#compare">인터넷비교</a>
+        <a href="#contact">인터넷가입신청</a>
+        <a href="#cost-guide">인터넷현금지원</a>
+        <a href="#compare">SKT인터넷</a>
+        <a href="#compare">KT인터넷</a>
+        <a href="#compare">LGU+인터넷</a>
+        <a href="#intro">인터넷저렴한곳</a>
+        <a href="#faq">인터넷설치비용</a>
+        <a href="#intro">인터넷가입순위</a>
+        <a href="#compare">인터넷상품</a>
+      </div>
+    </section>
+
+    ---
+
+    <section id="compare">
+      <h2>통신사별 인터넷 상품 비교 및 장단점 분석</h2>
+      <p>국내 주요 통신사 SKT(SK브로드밴드), KT(올레), LGU+의 인터넷 단독 상품을 자세히 비교하여 고객님께 가장 유리한 선택지를 제시합니다. 각 통신사는 고유의 강점을 가지고 있으므로, 단순히 **가격**이나 **사은품**만 보고 결정하기보다는 종합적인 **장단점**을 고려해야 합니다.</p>
+
+      <h3>SKT SK브로드밴드: 모바일 결합 시 높은 할인율</h3>
+      <p>SKT 모바일 이용자가 가장 선호하는 통신사입니다. **SKT 휴대폰**을 사용하고 있다면 '온가족 할인' 또는 '온가족 프리'와 같은 **결합 상품**을 통해 인터넷 요금을 대폭 절약할 수 있습니다. 특히 가족 구성원이 많을수록 할인 폭이 커지므로, 가족 전체 통신비를 **저렴하게** 관리하고 싶은 분들에게 **추천**합니다.</p>
+
+      <h3>KT 올레: 독보적인 안정성과 전국 커버리지</h3>
+      <p>KT는 대한민국에서 가장 넓은 **인터넷망 커버리지**를 보유하고 있으며, 1인 가구, 오피스텔 등 어느 지역이든 안정적인 품질을 보장합니다. 특히 **인터넷 품질**을 중요하게 생각하거나, 지방 소도시 및 신축 건물에 거주하여 타 통신사 설치가 어려운 경우 KT를 선택하는 것이 좋습니다. KT의 '기가지니'와 같은 AI 서비스 결합도 가능합니다.</p>
+
+      <h3>LG U+: 파격적인 현금 지원금과 콘텐츠 강점</h3>
+      <p>LG U+는 비교적 후발주자로서 시장 점유율 확대를 위해 적극적인 **현금지원금**과 **사은품**을 제공합니다. 특히 TV 콘텐츠(넷플릭스, 디즈니플러스 등)와 결합 상품을 구성할 경우 파격적인 할인을 받을 수 있습니다. 셋톱박스나 AI 스피커 등 다양한 부가 서비스를 제공하며, **가격 대비 혜택**이 뛰어난 통신사로 평가받습니다.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>통신사</th>
+            <th>주요 강점</th>
+            <th>추천 대상</th>
+            <th>2026년 가입 혜택 특징</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>**SKT (SKB)**</td>
+            <td>모바일 결합 할인율, 온가족 할인</td>
+            <td>SKT 휴대폰 사용 가족 구성원</td>
+            <td>가족 결합 시 요금 절감 최대화</td>
+          </tr>
+          <tr>
+            <td>**KT (올레)**</td>
+            <td>전국 커버리지, 안정적인 속도</td>
+            <td>인터넷 품질 중시, 오피스텔/신축 거주자</td>
+            <td>전국 어디서나 A/S 및 안정성 우수</td>
+          </tr>
+          <tr>
+            <td>**LG U+**</td>
+            <td>파격적인 현금 사은품, 콘텐츠 결합</td>
+            <td>현금지원 선호, TV 콘텐츠 이용자</td>
+            <td>OTT 연계 상품 강화, 신규 고객 대상 혜택 집중</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>인터넷 속도별 요금제 비교 (2026년 기준)</h3>
+      <p>인터넷 속도는 100Mbps(광랜), 500Mbps(기가 라이트), 1Gbps(기가), 10Gbps로 구분됩니다. 요금제에 따라 **평균 금액**이 달라지며, 1인 가구는 100Mbps, 2~3인 가구는 500Mbps가 적절합니다.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>구분</th>
+            <th>100Mbps (광랜)</th>
+            <th>500Mbps (기가 라이트)</th>
+            <th>1Gbps (기가)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>권장 사용자 수</td>
+            <td>1인 가구, 간단한 인터넷 사용</td>
+            <td>2~3인 가구, 고화질 스트리밍, 온라인 게임</td>
+            <td>4인 이상 가구, 대용량 파일 작업, BJ/스트리머</td>
+          </tr>
+          <tr>
+            <td>월 평균 요금 (3년 약정, 결합할인 미적용 시)</td>
+            <td>**2만원대 초반 (통신사별 차이)**</td>
+            <td>**3만원대 초중반 (통신사별 차이)**</td>
+            <td>**3만원대 후반 ~ 4만원대 (통신사별 차이)**</td>
+          </tr>
+          <tr>
+            <td>주요 특징</td>
+            <td>가장 **저렴한** 요금제, 기본적인 사용에 충분</td>
+            <td>가성비가 좋고 가장 많이 선택되는 요금제</td>
+            <td>초고속 인터넷, 전문적인 용도에 적합</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    ---
+
+    <section id="cost-guide">
+      <h2>인터넷만 설치 시 예상 비용 및 견적 확인 방법</h2>
+      <p>인터넷 **설치 비용**은 단순히 매월 납부하는 요금뿐만 아니라, **설치비**, **장비 임대료**, **현금 사은품**, **위약금** 등 다양한 요소로 구성됩니다. **전문 업체**를 통해 **견적**을 받을 때 아래 요소를 반드시 확인해야 합니다.</p>
+      <div class="form-section">
+        <h3>1. 전국 지역별 맞춤형 견적 요청</h3>
+        <p>인터넷 가입은 거주 지역에 따라 설치 가능한 통신사가 달라질 수 있습니다. 특히 **오피스텔**이나 **원룸**의 경우 특정 통신사만 서비스 가능한 경우가 많습니다. 저희는 고객님이 거주하는 지역을 기반으로 최적의 **견적**을 산출해 드립니다.</p>
+        <form action="#" method="post">
+          <div class="form-group">
+            <label for="region_select">거주 지역 선택 (30개 이상 지역)</label>
+            <select id="region_select" name="region">
+              <option value="">지역을 선택하세요</option>
+              <option value="서울">서울</option>
+              <option value="부산">부산</option>
+              <option value="인천">인천</option>
+              <option value="대구">대구</option>
+              <option value="대전">대전</option>
+              <option value="광주">광주</option>
+              <option value="울산">울산</option>
+              <option value="세종">세종</option>
+              <option value="경기">경기 (수원, 용인, 성남, 고양, 화성 등)</option>
+              <option value="강원">강원 (춘천, 원주, 강릉 등)</option>
+              <option value="충북">충북 (청주, 충주 등)</option>
+              <option value="충남">충남 (천안, 아산, 공주 등)</option>
+              <option value="전북">전북 (전주, 군산, 익산 등)</option>
+              <option value="전남">전남 (목포, 여수, 순천 등)</option>
+              <option value="경북">경북 (포항, 구미, 경산 등)</option>
+              <option value="경남">경남 (창원, 김해, 진주 등)</option>
+              <option value="제주">제주</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="internet_speed">희망 인터넷 속도</label>
+            <select id="internet_speed" name="speed">
+              <option value="100m">100Mbps (광랜)</option>
+              <option value="500m">500Mbps (기가 라이트)</option>
+              <option value="1g">1Gbps (기가)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>휴대폰 사용 통신사</label>
+            <div class="radio-group">
+              <label><input type="radio" name="mobile_provider" value="sk"> SKT</label>
+              <label><input type="radio" name="mobile_provider" value="kt"> KT</label>
+              <label><input type="radio" name="mobile_provider" value="lg"> LG U+</label>
+              <label><input type="radio" name="mobile_provider" value="none"> 알뜰폰/없음</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="이름 (필수)" required>
+          </div>
+          <div class="form-group">
+            <input type="tel" placeholder="연락처 (필수)" required>
+          </div>
+          <button type="submit" class="cta-button form-submit">무료 견적 신청 및 사은품 문의</button>
+        </form>
+      </div>
+
+      <h3>2. 현금 사은품: 가입 혜택의 핵심</h3>
+      <p>인터넷 가입 시 **현금 사은품**은 중요한 **지원금**입니다. 통신사 본사 정책과 대리점 정책이 복잡하게 얽혀 있어, 고객이 직접 **비교**하지 않으면 최대 **혜택**을 놓치기 쉽습니다. **내돈내산 후기**나 **인터넷 커뮤니티(디시, 뽐뿌 등)**에서 **사은품** 수준을 **비교**하는 것이 일반적입니다.</p>
+      <p>저희는 **2026년 최신 정보**를 바탕으로 현재 시장에서 **현금지원**을 가장 많이 해주는 **전문 업체**를 **추천**해 드립니다. 단순히 **싼곳**을 넘어, **가성비**와 **신뢰성**을 모두 갖춘 곳을 찾아드립니다.</p>
+
+      <h3>3. 숨겨진 추가 비용 (설치비 및 장비 임대료)</h3>
+      <p>인터넷 **설치 비용**은 대부분 1회성으로 청구됩니다. 통신사나 요금제에 따라 **면제**되거나 **할인**될 수 있으므로, **견적** 단계에서 **총 예상 금액**을 꼼꼼히 확인해야 합니다. 또한 와이파이 공유기나 셋톱박스 등 장비 임대료는 매월 청구되는 비용으로, **장단점**을 고려하여 **가입** 시 신중하게 선택해야 합니다.</p>
+      <p><strong>지역별 추천 키워드:</strong> 서울 인터넷만 설치 현금 지원, 부산 인터넷 가입 싼곳, 인천 인터넷만 설치 비용, 대구 기가 인터넷 가격 비교, 대전 인터넷 전문 업체, 광주 SKT 인터넷 요금, 울산 LGU+ 인터넷 혜택, 경기 지역 인터넷 가입 순위, 강원 인터넷만 설치 추천, 충북 인터넷만 설치 내돈내산 후기, 경북 인터넷 500M 가격, 전북 인터넷 가입 팁, 제주도 인터넷만 설치 가능한 곳</p>
+    </section>
+
+    ---
+
+    <section id="faq">
+      <h2>자주 묻는 질문 (인터넷만 설치 A to Z)</h2>
+      <dl>
+        <dt tabindex="0" aria-expanded="false">Q1. 인터넷만 설치해도 현금 사은품을 많이 받을 수 있나요?</dt>
+        <dd>네, **인터넷만 설치**하는 경우에도 **현금 사은품**을 충분히 받을 수 있습니다. 과거에는 TV나 전화 결합 상품에 비해 혜택이 적었으나, 최근 통신사 경쟁 심화로 **인터넷 단독 가입** 혜택도 매우 좋아졌습니다. 저희가 **추천**하는 **전문 업체**를 통해 **비교**하시면 최대 **현금지원**을 받으실 수 있습니다.</dd>
+        <dt tabindex="0" aria-expanded="false">Q2. 약정 기간 중 해지하면 위약금이 얼마나 나오나요?</dt>
+        <dd>약정 기간 중 해지 시, 사용 기간에 따라 차등적으로 **위약금**이 부과됩니다. 일반적으로 약정 기간이 많이 남았을수록 위약금 **금액**이 높습니다. 약정 기간(보통 3년)을 채우지 못할 가능성이 있다면, 1년 또는 2년 약정 상품을 고려하는 것이 좋습니다. 다만 단기 약정은 **가입 혜택**이 줄어들 수 있다는 **장단점**이 있습니다.</dd>
+        <dt tabindex="0" aria-expanded="false">Q3. 인터넷 설치 시간은 얼마나 걸리나요? (당일 설치 가능한가요?)</dt>
+        <dd>일반적으로 **인터넷 설치**는 접수 후 2~3일 내에 가능합니다. 통신사 **전문 업체**에 따라 **당일 설치**를 지원하는 경우도 있으나, 설치 기사님의 일정에 따라 달라질 수 있습니다. 이사 시즌이나 주말에는 설치 예약이 밀릴 수 있으니, 미리 **신청**하는 것을 **추천**합니다.</dd>
+        <dt tabindex="0" aria-expanded="false">Q4. AI 챗봇(ChatGPT, Gemini)으로 인터넷 가입 상담을 받을 수 있나요?</dt>
+        <dd>네, 최근 **AI 기술(ChatGPT, Gemini)**의 발전으로 **인터넷 가입** 상담 서비스도 자동화되고 있습니다. **AI 에이전트**는 고객의 문의 내용을 분석하여 통신사별 요금제와 **장단점**, **현금 사은품** 정보를 빠르게 **비교**해 줍니다. 하지만 최종적인 **가입 혜택**과 **신규** 프로모션은 **전문 업체** 상담사와 직접 통화하여 확인하는 것이 가장 정확합니다.</dd>
+        <dt tabindex="0" aria-expanded="false">Q5. 오피스텔이나 원룸에서는 어떤 통신사 인터넷을 선택해야 하나요?</dt>
+        <dd>오피스텔이나 원룸의 경우 건물마다 설치된 인터넷 회선이 다르므로, 특정 통신사만 **가입**이 가능한 경우가 많습니다. **SKT**, **KT**, **LGU+** 중 어떤 회선이 들어와 있는지 **전문 업체**를 통해 확인하는 것이 우선입니다. 이사를 고려한다면, 약정 없이 이용 가능한 **인터넷 상품**도 있습니다.</dd>
+      </dl>
+    </section>
+
+    ---
+
+    <section id="reliable-sources">
+      <h2>신뢰할 수 있는 인터넷 가입 정보 (외부 링크)</h2>
+      <p>보다 정확하고 공정한 **인터넷 가입** 정보를 위해 공신력 있는 기관의 자료를 확인하세요.</p>
+      <div class="external-links">
+        <a href="https://www.kca.go.kr/home/sub.do?menu_seq=29" target="_blank">한국소비자원 - 통신 서비스 관련 피해구제 및 상담</a>
+        <a href="https://www.msit.go.kr/web/main/index.do" target="_blank">과학기술정보통신부 (인터넷 품질 측정 및 통신 정책)</a>
+        <a href="https://www.kisa.or.kr/" target="_blank">한국인터넷진흥원 (KISA) - 인터넷 환경 및 보안 정보</a>
+        <a href="https://www.law.go.kr/LSW/lsInfoP.do?lsiSeq=183318#0000" target="_blank">전기통신사업법 (인터넷 서비스 관련 법률)</a>
+        <a href="https://namu.wiki/w/%EC%9D%B8%ED%84%B0%EB%84%B7" target="_blank">나무위키 - 인터넷 관련 기술 및 정보</a>
+      </div>
+    </section>
+
+    ---
+
+    <section id="contact">
+      <h2>최대 혜택을 위한 1:1 맞춤 상담 신청 (2026년 최신)</h2>
+      <p>인터넷만 설치 시 **현금 사은품**을 가장 많이 받을 수 있는 **전문 업체**를 지금 바로 **추천**받으세요. 저희 **전문 업체**는 고객님의 조건(지역, 휴대폰 통신사, 속도)을 분석하여 최적의 **가입** 조건을 제시합니다. **신규 가입**, **약정 만료 재가입**, **통신사 변경** 등 모든 경우에 대해 **가장 저렴한** **가격**과 최대 **지원금**을 약속드립니다.</p>
+      <a href="#cost-guide" class="cta-button">무료 견적 신청 및 현금 사은품 확인하기</a>
+    </section>
+  </main>
+
+  <script>
+    document.querySelectorAll('dl dt').forEach((dt) => {
+      dt.addEventListener('click', () => {
+        const dd = dt.nextElementSibling;
+        const expanded = dt.getAttribute('aria-expanded') === 'true';
+        document.querySelectorAll('dl dt').forEach(item => {
+          if (item !== dt) {
+            item.classList.remove('active');
+            item.setAttribute('aria-expanded', 'false');
+            item.nextElementSibling.style.display = 'none';
+          }
+        });
+        dt.classList.toggle('active');
+        dt.setAttribute('aria-expanded', !expanded);
+        dd.style.display = expanded ? 'none' : 'block';
+      });
+      dt.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          dt.click();
+        }
+      });
+    });
+  </script>
+  
